@@ -27,13 +27,30 @@ fn main() {
     reverb(args, count+1, replace,final_endline);
 }
 
-fn reverb(inputs: Vec<String>, count:u32,  _replace: bool, final_endline : bool) {
-    for input in inputs.into_iter().skip(count.try_into().unwrap()){
+fn reverb(inputs: Vec<String>, count_to_skip:u32,  replace: bool, final_endline : bool) {
+    for input in inputs.into_iter().skip(count_to_skip.try_into().unwrap()){
+        if replace {
+            let char_vec: Vec<char> = input.chars().collect();
+            let mut char_iterator = char_vec.iter();
+            while let Some(c) = char_iterator.next() {
+                if *c == '\u{5c}' {
+                    match char_iterator.next().unwrap(){
+                        'b' => print!("{}", '\u{8}'),
+                        _ => print!("{}",*c),
+                    }
+                }
+                else {
+                    print!("{}", c);
+                }
+            }
+            print!(" ");
+        }
+        else{
         print!("{} ",input);
+        }
     }
     if final_endline {
 
         println!("");
     }
 }
-
