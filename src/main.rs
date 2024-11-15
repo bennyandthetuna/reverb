@@ -40,7 +40,11 @@ fn reverb(inputs: Vec<String>, count_to_skip:u32,  replace: bool, final_endline 
                 if *c == '\u{5c}' {//if the current character you're looking at is \
                     match char_iterator.next().unwrap(){ //I actually cannot guarantee that this
                                                          //will uwrap safely
+                        'a' => print!("{}", '\u{7}'),//replaces a with bell
                         'b' => print!("{}", '\u{8}'),//replaces b with backspace
+                        'c' => std::process::exit(0),//replaces c with no further output
+                        'e' => print!("{}", '\u{1B}'),//replaces with escape character
+                        'f' => print!("{}", '\u{C}'), //form feed
                         //TODO: add other escape sequence patterns
                         _ => print!("{}",*c),
                     }
