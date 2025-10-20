@@ -1,6 +1,6 @@
 # Reverb
 
-a poor implementation of the echo command from coreutils in Rust 
+an implementation of the echo command from coreutils in Rust 
 
 I did this for fun in my spare time
 
